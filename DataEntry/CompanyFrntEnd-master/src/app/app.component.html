@@ -1,0 +1,132 @@
+<div class="container col-md-6 mt-0">
+  <div class="card">
+    <div class="card-header">
+      <h3 appHighight class="text-center">Sign In</h3>
+    </div>
+    <div class="card-body">
+
+      <!-- <div class="card"> -->
+
+
+      <div class="card-body">
+        <form [formGroup]="saveForm" (ngSubmit)="save()">
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Company Name</span>
+            </div>
+            <input type="text" name="cname" formControlName="cname" class="form-control" placeholder="">
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Address</span>
+            </div>
+            <input type="text" name="adrs" formControlName="adrs" class="form-control" placeholder="">
+          </div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Website</span>
+            </div>
+            <input type="text" name="web" formControlName="web" class="form-control" placeholder="">
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">PID</span>
+            </div>
+            <input type="text" name="pid" formControlName="pid" class="form-control" placeholder="">
+          </div>
+
+
+
+
+          <!-- <div> -->
+          <!-- <select (change)="onSelect($event)"> -->
+          <div class="input-group-prepend">
+            <span class="input-group-text">Features & Subfeatures</span>
+          </div>
+          <div class="card-container">
+            <div formArrayName="features">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Features</span>
+              </div>
+
+
+              <div *ngFor="let features of saveForm.get('features')['controls']; let i=index;">
+                <select class="select" (change)="onSelect($event)" [formControlName]="i">
+                  <option>Select Feature</option>
+                  <!-- <option *ngFor="let features of feature" [ngValue]="{id: features.Id, name: features.Name}">{{features.name}}</option> -->
+
+                  <option *ngFor="let features of feature" value="{{features.id}}">{{features.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-group form-group">
+            </div>
+
+            <!-- <select> -->
+            <div formArrayName="subfeatures">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Sub Features</span>
+              </div>
+              <div *ngFor="let subfeat of saveForm.get('subfeatures')['controls']; let i=index;">
+                <select class="select" [formControlName]="i">
+
+                  <option>Select Sub Feature</option>
+                  <option *ngFor="let subfeatures of subfeature" value="{{subfeatures.name}}">{{subfeatures.name}}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="input-group form-group">
+            </div>
+
+            <div class="input-group form-group" formArrayName="addinput">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Additional Input</span>
+              </div>
+              <div class="input-group form-group">
+
+              </div>
+    
+            <span></span>
+            <div *ngFor="let addinput of saveForm.get('addinput')['controls']; let i=index;">
+
+
+              <input type="text" [formControlName]="i">
+
+            </div>
+
+            </div>
+
+
+          <span></span>
+          <div class="input-group form-group">
+          </div>
+
+          <input type="button" value="Add more Features" (click)="addFeatures()">
+
+          </div>
+
+
+          <div class="input-group form-group">
+          </div>
+
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Special Input</span>
+            </div>
+            <input type="text" name="splinput" formControlName="splinput" class="form-control" placeholder="">
+          </div>
+
+
+          <div class="input-group form-group">
+          </div>
+          <input type="submit" value="Save" class="btn float-right login_btn " style="width:50%">
+
+        </form>
+      </div>
+    </div>
+  </div>
